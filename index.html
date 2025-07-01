@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Ejercicios de Fundamentos en JavaScript</title> 
+</head>
+<body>
+    <header>
+        <h1>Ejercicios de Fundamentos en JavaScript</h1>
+        <p>Aprende los conceptos básicos de JavaScript con ejemplos prácticos</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#tipos-datos">Tipos de Datos</a></li>
+            <li><a href="#operadores">Operadores</a></li>
+            <li><a href="#entrada-salida">Entrada/Salida</a></li>
+            <li><a href="#manipulacion">Manipulación</a></li>
+            <li><a href="#template-literals">Template Literals</a></li>
+            <li><a href="#condicionales">Condicionales</a></li>
+            <li><a href="#bucles">Bucles</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Sección 1: Tipos de datos y declaración de variables -->
+        <section id="tipos-datos">
+            <h2>1. Tipos de datos y declaración de variables</h2>
+            
+            <div class="theory">
+                <p>JavaScript es un lenguaje de tipado dinámico, lo que significa que no necesitas especificar el tipo de dato al declarar una variable. Los tipos de datos primitivos incluyen: number, string, boolean, undefined, null, symbol y bigint.</p>
+                
+                <p>Para declarar variables puedes usar <code>var</code>, <code>let</code> o <code>const</code>. Se recomienda usar <code>let</code> para variables que pueden cambiar y <code>const</code> para constantes.</p>
+                
+                <p>JavaScript convierte automáticamente los tipos cuando es necesario (coerción de tipos), pero es importante entender cómo funcionan para evitar errores comunes.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Declaración de variables con diferentes tipos</h4>
+                    <pre><code>// Declaración de variables con diferentes tipos de datos
+let nombre = "Juan";           // String
+let edad = 25;                 // Number
+let esEstudiante = true;       // Boolean
+let salario = null;            // Null
+let telefono;                  // Undefined
+const PI = 3.14159;            // Constante numérica
+
+console.log(typeof nombre);     // "string"
+console.log(typeof edad);       // "number"
+console.log(typeof esEstudiante); // "boolean"</code></pre>
+                    <button class="interactive-button" onclick="ejemploTipos1()">Ejecutar Ejemplo</button>
+                    <div id="output-tipos1" class="output">
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Conversión de tipos</h4>
+                    <pre><code>// Conversión explícita de tipos
+let numeroTexto = "123";
+let numero = Number(numeroTexto);    // Convierte string a number
+let textoNumero = String(456);       // Convierte number a string
+let booleano = Boolean(1);           // Convierte a boolean
+
+// Conversión implícita (coerción)
+let suma = "5" + 3;                  // "53" (concatenación)
+let resta = "5" - 3;                 // 2 (conversión a número)
+let comparacion = "5" == 5;          // true (conversión automática)</code></pre>
+                    <button class="interactive-button" onclick="ejemploTipos2()">Ejecutar Ejemplo</button>
+                    <div id="output-tipos2" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Scope de variables</h4>
+                    <pre><code>// Diferencias entre var, let y const
+var globalVar = "Variable global";
+
+function ejemploScope() {
+    var funcionVar = "Variable de función";
+    let bloqueVar = "Variable de bloque";
+    const constante = "No puede cambiar";
+    
+    if (true) {
+        var dentroIf = "var es visible fuera del bloque";
+        let bloqueIf = "let solo en este bloque";
+    }
+    
+    console.log(dentroIf);      // Funciona con var
+    // console.log(bloqueIf);   // Error: bloqueIf no está definida
+}
+
+ejemploScope();</code></pre>
+                    <button class="interactive-button" onclick="ejemploTipos3()">Ejecutar Ejemplo</button>
+                    <div id="output-tipos3" class="output"></div>
+                </div>
+            </div>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Declara variables para almacenar tu nombre, edad, si eres estudiante, tu altura y tu comida favorita. Usa el tipo de variable más apropiado para cada caso.</li>
+                    <li>Crea un programa que tome un string con un número y lo convierta a number, luego realiza operaciones matemáticas básicas.</li>
+                    <li>Investiga qué pasa cuando intentas cambiar el valor de una variable declarada con <code>const</code>.</li>
+                    <li>Crea ejemplos de coerción de tipos que resulten en valores inesperados y explica por qué ocurre.</li>
+                    <li>Declara variables en diferentes scopes y experimenta con su accesibilidad desde diferentes partes del código.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección 2: Operadores y expresiones -->
+        <section id="operadores">
+            <h2>2. Operadores y expresiones</h2>
+            
+            <div class="theory">
+                <p>Los operadores en JavaScript permiten realizar operaciones sobre variables y valores. Existen varios tipos: aritméticos (+, -, *, /, %), de comparación (==, ===, !=, !==, <, >), lógicos (&&, ||, !), y de asignación (=, +=, -=, etc.).</p>
+                
+                <p>Es importante distinguir entre == (comparación con conversión de tipos) y === (comparación estricta sin conversión). Los operadores lógicos utilizan evaluación de cortocircuito, lo que significa que pueden no evaluar todos los operandos.</p>
+                
+                <p>La precedencia de operadores determina el orden en que se evalúan las expresiones. Los paréntesis pueden usarse para cambiar este orden y hacer el código más legible.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Operadores aritméticos y de asignación</h4>
+                    <pre><code>// Operadores aritméticos básicos
+let a = 10;
+let b = 3;
+
+let suma = a + b;           // 13
+let resta = a - b;          // 7
+let multiplicacion = a * b; // 30
+let division = a / b;       // 3.3333...
+let modulo = a % b;         // 1 (resto de la división)
+
+// Operadores de asignación
+let contador = 5;
+contador += 3;              // contador = contador + 3 (8)
+contador -= 2;              // contador = contador - 2 (6)
+contador *= 2;              // contador = contador * 2 (12)
+
+// Incremento y decremento
+let x = 5;
+console.log(x++);           // 5 (post-incremento)
+console.log(++x);           // 7 (pre-incremento)</code></pre>
+                    <button class="interactive-button" onclick="ejemploOperadores1()">Ejecutar Ejemplo</button>
+                    <div id="output-operadores1" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Operadores de comparación</h4>
+                    <pre><code>// Comparaciones con == vs ===
+console.log(5 == "5");      // true (conversión automática)
+console.log(5 === "5");     // false (comparación estricta)
+console.log(null == undefined);  // true
+console.log(null === undefined); // false
+
+// Otros operadores de comparación
+let edad = 18;
+console.log(edad >= 18);    // true
+console.log(edad !== 17);   // true
+
+// Comparación de strings
+console.log("apple" < "banana");  // true (orden alfabético)
+console.log("10" < "9");          // true (comparación de strings)</code></pre>
+                    <button class="interactive-button" onclick="ejemploOperadores2()">Ejecutar Ejemplo</button>
+                    <div id="output-operadores2" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Operadores lógicos y precedencia</h4>
+                    <pre><code>// Operadores lógicos
+let esMayor = true;
+let tieneID = false;
+
+console.log(esMayor && tieneID);    // false (AND lógico)
+console.log(esMayor || tieneID);    // true (OR lógico)
+console.log(!tieneID);              // true (NOT lógico)
+
+// Evaluación de cortocircuito
+let nombre = "" || "Usuario Anónimo";  // "Usuario Anónimo"
+let saludo = nombre && "Hola " + nombre; // "Hola Usuario Anónimo"
+
+// Precedencia de operadores
+let resultado = 2 + 3 * 4;          // 14 (no 20)
+let resultado2 = (2 + 3) * 4;       // 20 (con paréntesis)</code></pre>
+                    <button class="interactive-button" onclick="ejemploOperadores3()">Ejecutar Ejemplo</button>
+                    <div id="output-operadores3" class="output"></div>
+                </div>
+            </div>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Crea una calculadora básica que realice las cuatro operaciones fundamentales y muestre el resto de una división.</li>
+                    <li>Escribe expresiones que demuestren la diferencia entre == y === con diferentes tipos de datos.</li>
+                    <li>Implementa un sistema de validación usando operadores lógicos para verificar si un usuario puede acceder (edad >= 18 Y tiene ID).</li>
+                    <li>Crea ejemplos de evaluación de cortocircuito para asignar valores por defecto a variables.</li>
+                    <li>Escribe expresiones complejas que requieran entender la precedencia de operadores y usa paréntesis para clarificar.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección 3: Entrada y salida de datos -->
+        <section id="entrada-salida">
+            <h2>3. Entrada y salida de datos</h2>
+            
+            <div class="theory">
+                <p>En JavaScript, la entrada y salida de datos puede realizarse de varias formas. En el navegador, podemos usar <code>prompt()</code> para entrada, <code>alert()</code> y <code>console.log()</code> para salida. También podemos interactuar con elementos HTML usando el DOM.</p>
+                
+                <p>Para aplicaciones web modernas, es más común usar formularios HTML y eventos para capturar la entrada del usuario, y manipular el DOM para mostrar resultados. <code>console.log()</code> es especialmente útil para depuración y desarrollo.</p>
+                
+                <p>Es importante validar siempre los datos de entrada del usuario, ya que pueden introducir valores inesperados o maliciosos. JavaScript proporciona varios métodos para convertir y validar datos.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Métodos básicos de entrada y salida</h4>
+                    <pre><code>// Salida básica
+console.log("Mensaje en la consola");
+console.warn("Esto es una advertencia");
+console.error("Esto es un error");
+
+// Entrada básica (solo funciona en navegador)
+// let nombre = prompt("¿Cuál es tu nombre?");
+// alert("Hola " + nombre);
+
+// Salida formateada en consola
+let usuario = "Ana";
+let edad = 25;
+console.log("Usuario:", usuario, "Edad:", edad);
+console.log(`Usuario: ${usuario}, Edad: ${edad}`);</code></pre>
+                    <button class="interactive-button" onclick="ejemploES1()">Ejecutar Ejemplo</button>
+                    <div id="output-es1" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Interacción con HTML</h4>
+                    <pre><code>// Capturar datos de un formulario HTML
+function capturarDatos() {
+    // Simulamos la captura de datos
+    let nombre = "María";
+    let email = "maria@email.com";
+    
+    // Mostrar en el DOM
+    let resultado = `
+        Nombre: ${nombre}
+        Email: ${email}
+        Fecha: ${new Date().toLocaleDateString()}
+    `;
+    
+    return resultado;
+}
+
+// Validación de entrada
+function validarEmail(email) {
+    let patron = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return patron.test(email);
+}</code></pre>
+                    <button class="interactive-button" onclick="ejemploES2()">Ejecutar Ejemplo</button>
+                    <div id="output-es2" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Manejo de diferentes tipos de entrada</h4>
+                    <pre><code>// Función para procesar diferentes tipos de entrada
+function procesarEntrada(entrada) {
+    console.log("Entrada original:", entrada, "Tipo:", typeof entrada);
+    
+    // Intentar convertir a número
+    let numero = Number(entrada);
+    if (!isNaN(numero)) {
+        console.log("Como número:", numero);
+        console.log("Es entero:", Number.isInteger(numero));
+    }
+    
+    // Procesar como texto
+    let texto = String(entrada).trim();
+    console.log("Como texto:", texto);
+    console.log("Longitud:", texto.length);
+    
+    // Validaciones básicas
+    console.log("Está vacío:", texto === "");
+    console.log("Es solo números:", /^\d+$/.test(texto));
+}
+
+// Ejemplos de uso
+procesarEntrada("123");
+procesarEntrada("  Hola Mundo  ");
+procesarEntrada(true);</code></pre>
+                    <button class="interactive-button" onclick="ejemploES3()">Ejecutar Ejemplo</button>
+                    <div id="output-es3" class="output"></div>
+                </div>
+            </div>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Crea un programa que pida al usuario su nombre y edad, y muestre un mensaje personalizado de bienvenida.</li>
+                    <li>Implementa una función que valide diferentes tipos de entrada: números, emails, y teléfonos.</li>
+                    <li>Crea un sistema que capture datos de un formulario imaginario y los muestre formateados en la consola.</li>
+                    <li>Desarrolla una función que convierta automáticamente la entrada del usuario al tipo de dato más apropiado.</li>
+                    <li>Implementa un sistema de logging que muestre mensajes con diferentes niveles (info, warning, error) con timestamps.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección 4: Manipulación de cadenas y números -->
+        <section id="manipulacion">
+            <h2>4. Manipulación de cadenas y números</h2>
+            
+            <div class="theory">
+                <p>JavaScript proporciona muchos métodos integrados para manipular strings y números. Los strings son inmutables, lo que significa que los métodos no modifican el string original sino que devuelven uno nuevo.</p>
+                
+                <p>Los métodos más comunes para strings incluyen: <code>length</code>, <code>charAt()</code>, <code>substring()</code>, <code>indexOf()</code>, <code>replace()</code>, <code>split()</code>, <code>toUpperCase()</code>, <code>toLowerCase()</code>, y <code>trim()</code>.</p>
+                
+                <p>Para números, JavaScript ofrece métodos como <code>toFixed()</code>, <code>parseInt()</code>, <code>parseFloat()</code>, y el objeto <code>Math</code> con funciones matemáticas avanzadas como <code>Math.round()</code>, <code>Math.random()</code>, y <code>Math.max()</code>.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Manipulación de strings</h4>
+                    <pre><code>// Propiedades y métodos básicos de strings
+let frase = "  Hola Mundo JavaScript  ";
+
+console.log("Longitud:", frase.length);                    // 25
+console.log("Sin espacios:", frase.trim());                // "Hola Mundo JavaScript"
+console.log("Mayúsculas:", frase.toUpperCase());           
+console.log("Minúsculas:", frase.toLowerCase());
+
+// Búsqueda y extracción
+console.log("Posición de 'Mundo':", frase.indexOf("Mundo")); // 7
+console.log("Incluye 'Java':", frase.includes("Java"));       // true
+console.log("Substring:", frase.substring(2, 6));            // "Hola"
+
+// Reemplazo y división
+let nuevaFrase = frase.replace("JavaScript", "JS");
+let palabras = frase.trim().split(" ");
+console.log("Reemplazado:", nuevaFrase);
+console.log("Palabras:", palabras);</code></pre>
+                    <button class="interactive-button" onclick="ejemploManipulacion1()">Ejecutar Ejemplo</button>
+                    <div id="output-manipulacion1" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Manipulación de números</h4>
+                    <pre><code>// Operaciones con números
+let numero = 123.456789;
+
+console.log("Número original:", numero);
+console.log("Redondeado:", Math.round(numero));             // 123
+console.log("Hacia arriba:", Math.ceil(numero));            // 124
+console.log("Hacia abajo:", Math.floor(numero));            // 123
+console.log("2 decimales:", numero.toFixed(2));             // "123.46"
+
+// Conversiones y validaciones
+let texto = "42.5px";
+console.log("parseInt:", parseInt(texto));                  // 42
+console.log("parseFloat:", parseFloat(texto));              // 42.5
+console.log("Es número:", !isNaN(parseFloat(texto)));       // true
+
+// Números aleatorios
+console.log("Aleatorio 0-1:", Math.random());
+console.log("Aleatorio 1-10:", Math.floor(Math.random() * 10) + 1);
+
+// Operaciones matemáticas
+console.log("Potencia:", Math.pow(2, 3));                   // 8
+console.log("Raíz cuadrada:", Math.sqrt(16));               // 4</code></pre>
+                    <button class="interactive-button" onclick="ejemploManipulacion2()">Ejecutar Ejemplo</button>
+                    <div id="output-manipulacion2" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Formateo y validación avanzada</h4>
+                    <pre><code>// Función para formatear nombres
+function formatearNombre(nombre) {
+    return nombre.trim()
+                 .toLowerCase()
+                 .split(' ')
+                 .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+                 .join(' ');
+}
+
+// Función para formatear números como moneda
+function formatearMoneda(cantidad) {
+    return "$" + cantidad.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+// Validación de formato
+function validarFormato(texto, tipo) {
+    const patrones = {
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        telefono: /^\d{3}-\d{3}-\d{4}$/,
+        codigo: /^[A-Z]{2}\d{4}$/
+    };
+    
+    return patrones[tipo] ? patrones[tipo].test(texto) : false;
+}
+
+// Ejemplos de uso
+console.log("Nombre:", formatearNombre("juan PÉREZ garcía"));
+console.log("Moneda:", formatearMoneda(1234567.89));
+console.log("Email válido:", validarFormato("test@email.com", "email"));</code></pre>
+                    <button class="interactive-button" onclick="ejemploManipulacion3()">Ejecutar Ejemplo</button>
+                    <div id="output-manipulacion3" class="output"></div>
+                </div>
+            </div>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Crea una función que tome un texto y devuelva estadísticas: número de caracteres, palabras, y la palabra más larga.</li>
+                    <li>Implementa una calculadora que maneje números decimales y formatee el resultado con la cantidad apropiada de decimales.</li>
+                    <li>Desarrolla un validador de contraseñas que verifique longitud, mayúsculas, minúsculas, números y caracteres especiales.</li>
+                    <li>Crea un generador de códigos aleatorios que combine letras y números en un formato específico.</li>
+                    <li>Implementa una función que convierta números a palabras (ej: 123 -> "ciento veintitrés").</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección 5: Template literals e interpolación -->
+        <section id="template-literals">
+            <h2>5. Template literals e interpolación</h2>
+            
+            <div class="theory">
+                <p>Los template literals (literales plantilla) son una característica de ES6 que permite crear strings de forma más flexible usando backticks (`). Permiten interpolación de variables con <code>${}</code>, strings multilínea sin caracteres de escape, y llamadas a funciones dentro del string.</p>
+                
+                <p>La interpolación hace que el código sea más legible comparado con la concatenación tradicional. También permiten expresiones JavaScript complejas dentro de las llaves, incluyendo operadores ternarios y llamadas a funciones.</p>
+                
+                <p>Los template literals también soportan "tagged templates", una característica avanzada que permite procesar el template con una función personalizada, útil para internacionalización, sanitización, o formateo especial.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Interpolación básica</h4>
+                    <pre><code>// Comparación: concatenación vs template literals
+let nombre = "Carlos";
+let edad = 30;
+let profesion = "Desarrollador";
+
+// Forma tradicional (concatenación)
+let mensaje1 = "Hola, mi nombre es " + nombre + 
+              ", tengo " + edad + " años y soy " + profesion + ".";
+
+// Con template literals
+let mensaje2 = `Hola, mi nombre es ${nombre}, tengo ${edad} años y soy ${profesion}.`;
+
+console.log("Concatenación:", mensaje1);
+console.log("Template literal:", mensaje2);
+
+// Expresiones dentro de template literals
+let precio = 99.99;
+let descuento = 0.15;
+let mensaje3 = `El precio final es: $${(precio * (1 - descuento)).toFixed(2)}`;
+console.log(mensaje3);</code></pre>
+                    <button class="interactive-button" onclick="ejemploTemplates1()">Ejecutar Ejemplo</button>
+                    <div id="output-templates1" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Strings multilínea y HTML</h4>
+                    <pre><code>// Strings multilínea
+let poema = `
+    En un lugar de la Mancha,
+    de cuyo nombre no quiero acordarme,
+    no ha mucho tiempo que vivía
+    un hidalgo de los de lanza en astillero.
+`;
+
+console.log("Poema:", poema);
+
+// Generación de HTML dinámico
+function crearTarjetaUsuario(usuario) {
+    return `
+        <div class="tarjeta-usuario">
+            <h3>${usuario.nombre}</h3>
+            <p>Email: ${usuario.email}</p>
+            <p>Edad: ${usuario.edad} años</p>
+            <p>Estado: ${usuario.activo ? 'Activo' : 'Inactivo'}</p>
+        </div>
+    `;
+}
+
+let usuario = {
+    nombre: "Ana García",
+    email: "ana@email.com",
+    edad: 28,
+    activo: true
+};
+
+console.log("HTML generado:", crearTarjetaUsuario(usuario));</code></pre>
+                    <button class="interactive-button" onclick="ejemploTemplates2()">Ejecutar Ejemplo</button>
+                    <div id="output-templates2" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Expresiones complejas y funciones</h4>
+                    <pre><code>// Funciones dentro de template literals
+function obtenerSaludo(hora) {
+    if (hora < 12) return "Buenos días";
+    if (hora < 18) return "Buenas tardes";
+    return "Buenas noches";
+}
+
+function formatearFecha(fecha) {
+    return fecha.toLocaleDateString('es-ES', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+// Uso de funciones en template literals
+let horaActual = new Date().getHours();
+let fechaActual = new Date();
+let nombreUsuario = "María";
+
+let mensajeBienvenida = `
+    ${obtenerSaludo(horaActual)}, ${nombreUsuario}!
+    Hoy es ${formatearFecha(fechaActual)}
+    ${horaActual >= 18 ? '🌙' : '☀️'} 
+    Tienes ${Math.floor(Math.random() * 5) + 1} mensajes nuevos.
+`;
+
+console.log("Mensaje de bienvenida:", mensajeBienvenida);
+
+// Operador ternario en template literals
+let edad = 17;
+let mensaje = `Eres ${edad >= 18 ? 'mayor' : 'menor'} de edad`;
+console.log(mensaje);</code></pre>
+                    <button class="interactive-button" onclick="ejemploTemplates3()">Ejecutar Ejemplo</button>
+                    <div id="output-templates3" class="output"></div>
+                </div>
+            </div>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Crea un generador de facturas que use template literals para formatear todos los datos de compra de forma legible.</li>
+                    <li>Implementa un sistema de plantillas de email que permita personalizar mensajes con datos del usuario.</li>
+                    <li>Desarrolla una función que genere código HTML para una tabla con datos dinámicos usando template literals.</li>
+                    <li>Crea un formateador de direcciones que combine múltiples campos en un formato postal estándar.</li>
+                    <li>Implementa un generador de reportes que incluya cálculos matemáticos y formateo condicional dentro del template.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Sección 6: Estructuras condicionales -->
+        <section id="condicionales">
+            <h2>6. Estructuras condicionales</h2>
+            
+            <div class="theory">
+                <p>Las estructuras condicionales permiten que el programa tome diferentes caminos según se cumplan o no ciertas condiciones. JavaScript ofrece varias formas: <code>if...else</code>, <code>switch</code>, y el operador ternario <code>? :</code>.</p>
+                
+                <p>La estructura <code>if...else</code> es la más básica y versátil. Puede encadenarse con <code>else if</code> para múltiples condiciones. El <code>switch</code> es útil cuando se compara una variable contra múltiples valores específicos.</p>
+                
+                <p>El operador ternario es una forma compacta de escribir condiciones simples. También existen operadores de cortocircuito (<code>&&</code>, <code>||</code>) que pueden usarse para ejecución condicional. Es importante entender los valores "falsy" en JavaScript: false, 0, "", null, undefined, NaN.</p>
+                
+                <p>Las condiciones anidadas pueden volverse complejas, por lo que es importante mantener el código legible y considerar refactoring cuando sea necesario.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Estructuras if...else básicas y anidadas</h4>
+                    <pre><code>// Estructura if...else básica
+function evaluarNota(nota) {
+    let resultado;
+    
+    if (nota >= 90) {
+        resultado = "Excelente";
+    } else if (nota >= 80) {
+        resultado = "Muy bueno";
+    } else if (nota >= 70) {
+        resultado = "Bueno";
+    } else if (nota >= 60) {
+        resultado = "Suficiente";
+    } else {
+        resultado = "Insuficiente";
+    }
+    
+    return resultado;
+}
+
+// Condiciones anidadas
+function verificarAcceso(edad, tieneID, esEstudiante) {
+    if (edad >= 18) {
+        if (tieneID) {
+            return "Acceso completo";
+        } else {
+            return "Necesita identificación";
+        }
+    } else {
+        if (esEstudiante) {
+            return "Acceso con supervisión";
+        } else {
+            return "Acceso denegado";
+        }
+    }
+}
+
+// Ejemplos de uso
+console.log("Nota 85:", evaluarNota(85));
+console.log("Acceso (17, false, true):", verificarAcceso(17, false, true));
+console.log("Acceso (20, true, false):", verificarAcceso(20, true, false));</code></pre>
+                    <button class="interactive-button" onclick="ejemploCondicionales1()">Ejecutar Ejemplo</button>
+                    <div id="output-condicionales1" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Switch y operador ternario</h4>
+                    <pre><code>// Estructura switch
+function obtenerDiaSemana(numero) {
+    switch (numero) {
+        case 1:
+            return "Lunes";
+        case 2:
+            return "Martes";
+        case 3:
+            return "Miércoles";
+        case 4:
+            return "Jueves";
+        case 5:
+            return "Viernes";
+        case 6:
+            return "Sábado";
+        case 7:
+            return "Domingo";
+        default:
+            return "Número inválido";
+    }
+}
+
+// Switch con agrupación de casos
+function tipoOperacion(simbolo) {
+    switch (simbolo) {
+        case '+':
+        case '-':
+            return "Operación aritmética básica";
+        case '*':
+        case '/':
+            return "Operación aritmética avanzada";
+        case '%':
+            return "Operación de módulo";
+        default:
+            return "Operación desconocida";
+    }
+}
+
+// Operador ternario
+function clasificarEdad(edad) {
+    return edad >= 18 ? "Adulto" : "Menor";
+}
+
+// Operadores ternarios anidados
+function calcularDescuento(edad, esEstudiante, esMiembro) {
+    let descuento = edad >= 65 ? 0.3 : 
+                   esEstudiante ? 0.15 : 
+                   esMiembro ? 0.1 : 0;
+    return descuento * 100 + "%";
+}
+
+// Ejemplos de uso
+console.log("Día 3:", obtenerDiaSemana(3));
+console.log("Operación +:", tipoOperacion('+'));
+console.log("Clasificar edad 16:", clasificarEdad(16));
+console.log("Descuento (25, true, false):", calcularDescuento(25, true, false));</code></pre>
+                    <button class="interactive-button" onclick="ejemploCondicionales2()">Ejecutar Ejemplo</button>
+                    <div id="output-condicionales2" class="output"></div>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Valores falsy y operadores de cortocircuito</h4>
+                    <pre><code>// Demostración de valores falsy
+function probarValores() {
+    let valores = [false, 0, "", null, undefined, NaN, "texto", 42, [], {}];
+    
+    valores.forEach(valor => {
+        console.log(`${String(valor)} es ${valor ? 'truthy' : 'falsy'}`);
+    });
+}
+
+// Operadores de cortocircuito para asignación
+function configurarUsuario(opciones) {
+    // Valores por defecto usando ||
+    let usuario = {
+        nombre: opciones.nombre || "Usuario Anónimo",
+        edad: opciones.edad || 18,
+        tema: opciones.tema || "claro",
+        notificaciones: opciones.notificaciones !== undefined ? opciones.notificaciones : true
+    };
+    
+    return usuario;
+}
+
+// Ejecución condicional con &&
+function procesarDatos(datos) {
+    // Solo ejecuta si datos existe y tiene longitud
+    datos && datos.length && console.log("Procesando", datos.length, "elementos");
+    
+    // Validación más robusta
+    if (datos && Array.isArray(datos) && datos.length > 0) {
+        return datos.map(item => item.toUpperCase());
+    }
+    
+    return [];
+}
+
+// Ejemplos de uso
+probarValores();
+
+let configuracion = { nombre: "Juan", tema: "oscuro" };
+console.log("Usuario configurado:", configurarUsuario(configuracion));
+
+console.log("Datos procesados:", procesarDatos(["hola", "mundo"]));
+console.log("Datos vacíos:", procesarDatos([]));</code></pre>
+                    <button class="interactive-button" onclick="ejemploCondicionales3()">Ejecutar Ejemplo</button>
+                    <div id="output-condicionales3" class="output"></div>
+                </div>
+            </div>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Crea un sistema de calificación de películas que asigne categorías según la puntuación y el género.</li>
+                    <li>Implementa una calculadora de impuestos que considere diferentes tramos de ingresos y situaciones especiales.</li>
+                    <li>Desarrolla un validador de formularios que verifique múltiples campos y muestre mensajes específicos para cada error.</li>
+                    <li>Crea un sistema de recomendaciones que sugiera actividades según el clima, la hora y las preferencias del usuario.</li>
+                    <li>Implementa un juego simple de "piedra, papel o tijera" con todas las combinaciones posibles usando switch.</li>
+                </ol>
+            </div>
+        </section>
+        <!-- Sección 8: Bucles -->
+        <section id="bucles">
+            <h2>7. Bucles</h2>
+            
+            <div class="theory">
+                <p>Los bucles permiten ejecutar un bloque de código repetidamente mientras se cumpla una condición. JavaScript ofrece varios tipos de bucles: <code>for</code>, <code>while</code>, <code>do...while</code>, y el bucle <code>for...in</code> para iterar sobre propiedades de objetos, y <code>for...of</code> para iterar sobre elementos de colecciones iterables como arrays.</p>
+                
+                <p>El bucle <code>for</code> es el más común y versátil, permitiendo definir un contador, una condición de continuación, y un incremento. El bucle <code>while</code> ejecuta el bloque mientras la condición sea verdadera, y el <code>do...while</code> garantiza al menos una ejecución del bloque antes de evaluar la condición.</p>
+                
+                <p>Es importante tener cuidado con los bucles infinitos, que ocurren cuando la condición nunca se vuelve falsa. También existen técnicas como el "break" para salir del bucle anticipadamente y "continue" para saltar a la siguiente iteración.</p>
+            </div>
+
+            <div class="examples">
+                <h3>Ejemplos Prácticos:</h3>
+                
+                <div class="example">
+                    <h4>Ejemplo 1: Bucle for básico</h4>
+                    <pre><code>// Bucle for básico
+for (let i = 0; i < 5; i++) {
+    console.log("Iteración:", i);
+}
+</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 2: Bucle while</h4>
+                    <pre><code>// Bucle while
+let i = 0;
+while (i < 5) {
+    console.log("Iteración:", i);
+    i++;
+}
+</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 3: Bucle do...while</h4>
+                    <pre><code>// Bucle do...while
+let i = 0;
+do {
+    console.log("Iteración:", i);
+    i++;
+} while (i < 5);
+</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 4: Bucle for...of</h4>
+                    <pre><code>// Bucle for...of
+const array = ["a", "b", "c"];
+for (const elemento of array) {
+    console.log("Elemento:", elemento);
+}
+</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Ejemplo 5: Bucle for...in</h4>
+                    <pre><code>// Bucle for...in
+const objeto = { x: 1, y: 2, z: 3 };
+for (const clave in objeto) {
+    console.log("Clave:", clave, "Valor:", objeto[clave]);
+}
+</code></pre>
+                </div>
+            </div>
+        </section>
+
+            <div class="exercises">
+                <h3>Ejercicios Propuestos:</h3>
+                <ol>
+                    <li>Crea un programa que imprima los números del 1 al 100, indicando si son pares o impares.</li>
+                    <li>Implementa un sistema de conteo regresivo que muestre mensajes en cada iteración.</li>
+                    <li>Desarrolla un programa que calcule la suma de todos los números del 1 al 100.</li>
+                    <li>Crea un generador de tablas de multiplicar para un número dado por el usuario.</li>
+                    <li>Implementa un sistema que recorra un array y muestre solo los elementos que cumplen una condición específica.</li>
+                </ol>
+            </div>
